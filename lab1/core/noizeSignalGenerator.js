@@ -1,7 +1,7 @@
 class NoizeSignalGenerator {
 
     #generateSignalValue(amplitude) {
-        return amplitude * Math.random();
+        return amplitude * (2 * Math.random() - 1);
     }
 
     generateSignal(data) {

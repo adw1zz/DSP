@@ -1,6 +1,6 @@
 class PulseSignalGenerator {
 
-    #generateSignalValue(amplitude, frequency, sampleRate, initialPhase, dutyCycle,n) {
+    #generateSignalValue(amplitude, frequency, sampleRate, initialPhase, dutyCycle, n) {
         return ((2 * Math.PI * frequency * n / sampleRate + initialPhase) % (2 * Math.PI)) / (2 * Math.PI) <= dutyCycle ? amplitude : -amplitude;
     }
 

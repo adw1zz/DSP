@@ -1,34 +1,20 @@
-const { createInterface } = require('readline');
-const chooseGenerator = require('./services/chooseGenerator');
-const wavFileGenerator = require('./services/wavFileGenerator');
-const readline = createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
-
-const readLineAsync = (msg) => {
-    return new Promise(resolve => {
-        readline.question(msg, userInput => {
-            resolve(userInput);
-        })
-    })
-}
+const defaultSignalGeneration = require('./services/defaultSignalGeneration');
+const readLineAsync = require('./services/readLineAsync');
 
 const main = async () => {
     while (true) {
-        console.log("\n----Choose Generator for Message Signal-----");
-        const signalType = await readLineAsync("1 - Noize\n2 - Pulse\n3 - Sawtooth\n4 - Sinusoid\n5 - Triangle\n");
-        const generator = chooseGenerator(Number(signalType));
-        const amplitude = Number(await readLineAsync("\nAmplitude: "));
-        const frequency = Number(await readLineAsync("Frequency: "));
-        const initialPhase = Number(await readLineAsync("Initial Phase: "));
-        const sampleRate = Number(await readLineAsync("Sample Rate: "));
-        const dutyCycle = Number(await readLineAsync("Duty Cycle: "));
-        const time = Number(await readLineAsync("Time: "));
-        const signal = generator?.generateSignal({ amplitude, frequency, initialPhase, sampleRate, dutyCycle, time });
-        wavFileGenerator(signal, sampleRate, time);
-        console.log('---Complete---\n');
-    }
+        console.log("\n----Choose Generation-----");
+        const signalType = await readLineAsync("1 - Default Signal Generation\n2 - Amlitude Modulation\n3 - Frequency Modulation\n4 - Polyhormonical Modulation\n");
+        if (signalType == 0) {
+            break;
+        }
+        switch(Number(signalType)) {
+            case 1: 
+                await defaultSignalGeneration();
+                break;
+            default: break;
+        }
+    }   
 }
 
 main();

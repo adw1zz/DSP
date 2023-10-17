@@ -1,7 +1,7 @@
 const NoizeSignalGenerator = require("../core/noizeSignalGenerator");
 const PulseSignalGenerator = require("../core/pulseSignalGenerator");
-const SawtoothSignalGenerator = require("../core/pulseSignalGenerator");
-const SinusoidSignalGenerator = require("../core/sawtoothSignalGenerator");
+const SawtoothSignalGenerator = require("../core/sawtoothSignalGenerator");
+const SinusoidSignalGenerator = require("../core/sinusoidSignalGenerator");
 const TriangleSignalGenerator = require("../core/triangleSignalGenerator");
 
 const chooseGenerator = (num) => {
