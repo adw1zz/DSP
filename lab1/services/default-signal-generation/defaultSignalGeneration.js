@@ -1,6 +1,6 @@
-const readLineAsync = require('./readLineAsync');
-const chooseGenerator = require('./chooseGenerator');
-const wavFileGenerator = require('./wavFileGenerator');
+const readLineAsync = require('../readLineAsync');
+const chooseGenerator = require('../chooseGenerator');
+const wavFileGenerator = require('../wavFileGenerator');
 
 const defaultSignalGeneration = async () => {
     while (true) {
@@ -17,7 +17,7 @@ const defaultSignalGeneration = async () => {
         const dutyCycle = Number(await readLineAsync("Duty Cycle: "));
         const time = Number(await readLineAsync("Time: "));
         const signal = generator?.generateSignal({ amplitude, frequency, initialPhase, sampleRate, dutyCycle, time });
-        await wavFileGenerator(signal, sampleRate, `./core/sounds/${generator.constructor.name}.wav`);
+        await wavFileGenerator(signal, sampleRate, `./core/default-signal-generation/${generator.constructor.name}.wav`);
         console.log('\n---Complete---\n');
     }
 }

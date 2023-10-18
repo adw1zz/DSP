@@ -34,7 +34,7 @@ const frequencyModulation = async () => {
         dutyCycle = Number(await readLineAsync("Duty Cycle: "));
         time = Number(await readLineAsync("Time: "));
         const modulatedSignal = generator?.generateFrequencyModulatedSignal(messageSignal, { amplitude, frequency, initialPhase, sampleRate, dutyCycle, time });
-        await wavFileGenerator(modulatedSignal, sampleRate, `./services/amplitude-modulation/${messageSignalGeneratorName}-by-${modulatedSignalGeneratorName}`);
+        await wavFileGenerator(modulatedSignal, sampleRate, `./services/frequency-modulation/${messageSignalGeneratorName}-by-${modulatedSignalGeneratorName}`);
         console.log('\n----Modulated signal complete----\n');
     }
 }
