@@ -4,6 +4,7 @@ const wavFileGenerator = require('../wavFileGenerator');
 
 const frequencyModulation = async () => {
     while (true) {
+        console.clear();
         console.log("\n----Choose Generator for Message Signal-----");
         const signalType = await readLineAsync("1 - Noize\n2 - Pulse\n3 - Sawtooth\n4 - Sinusoid\n5 - Triangle\n0 - exit\n");
         if (signalType == 0) {
