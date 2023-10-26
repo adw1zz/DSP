@@ -1,14 +1,14 @@
 const defaultSignalGeneration = require('./services/default-signal-generation/defaultSignalGeneration');
 const amplitudeModulation = require('./services/amplitude-modulation/amplitudeModulation');
 const frequencyModulation = require('./services/frequency-modulation/frequencyModulation');
-const polyhormonicalModulation = require('./services/polyhormonical-modulation/polyharmonicalModulation');
+const polyhormonicalSignalGeneration= require('./services/polyhormonical-signal-generation/polyharmonicalSiganlGeneration');
 const readLineAsync = require('./services/readLineAsync');
 
 const main = async () => {
     while (true) {
         console.clear();
         console.log("\n----Choose Generation-----");
-        const signalType = await readLineAsync("1 - Default Signal Generation\n2 - Amlitude Modulation\n3 - Frequency Modulation\n4 - Polyhormonical Modulation\n");
+        const signalType = await readLineAsync("1 - Default Signal Generation\n2 - Amlitude Modulation\n3 - Frequency Modulation\n4 - Polyhormonical Signal Generation\n");
         if (signalType == 0) {
             break;
         }
@@ -23,7 +23,7 @@ const main = async () => {
                 await frequencyModulation();
                 break;
             case 4:
-                await polyhormonicalModulation();
+                await polyhormonicalSignalGeneration();
                 break;
             default: break;
         }

@@ -4,7 +4,7 @@ const wavFileGenerator = require('../wavFileGenerator');
 const polyharmonicalSingalGenerator = require('./polyharmonical-generator');
 
 const generateNewSignal = async () => {
-    console.log("\n----Choose Generator for Message Signal-----");
+    console.log("\n----Choose Generator for Signal-----");
     const signalType = await readLineAsync("1 - Noize\n2 - Pulse\n3 - Sawtooth\n4 - Sinusoid\n5 - Triangle\n0 - exit\n");
     if (signalType == 0) {
         return [];
@@ -16,14 +16,14 @@ const generateNewSignal = async () => {
     const sampleRate = Number(await readLineAsync("Sample Rate: "));
     const dutyCycle = Number(await readLineAsync("Duty Cycle: "));
     const time = Number(await readLineAsync("Time: "));
-    const messageSignal = generator?.generateSignal({ amplitude, frequency, initialPhase, sampleRate, dutyCycle, time });
+    const signal = generator?.generateSignal({ amplitude, frequency, initialPhase, sampleRate, dutyCycle, time });
     console.log('\n----Message signal complete----\n');
-    return messageSignal;
+    return signal;
 }
 
 const generateFile = async (signals) => {
     const resultSignal = polyharmonicalSingalGenerator.generatePolyharmonicalSignal(signals);
-    await wavFileGenerator(resultSignal, 44100, "./services/polyhormonical-modulation/polyharmonical_modulated_signal.wav");
+    await wavFileGenerator(resultSignal, 44100, "./services/polyhormonical-signal-generation/polyharmonical_signal.wav");
     console.log('\n---Complete---\n');
 }
 
