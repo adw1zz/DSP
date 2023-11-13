@@ -28,12 +28,11 @@ class SinusoidSignalGenerator {
 
     generateSignal(data) {
         const signal = [];
-        const length = data.sampleRate * data.tim;
+        const length = data.sampleRate * data.time;
         for (let i = 0; i < length; i++) {
             const signalValue = this.#generateSignalValue(data.amplitude, data.frequency, data.sampleRate, data.initialPhase, i);
             signal.push(signalValue);
         }
-        console.log(signal);
         return signal;
     }
 }

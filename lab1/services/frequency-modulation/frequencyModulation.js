@@ -6,19 +6,19 @@ const frequencyModulation = async () => {
     while (true) {
         console.clear();
         console.log("\n----Choose Generator for Message Signal-----");
-        const signalType = await readLineAsync("1 - Noize\n2 - Pulse\n3 - Sawtooth\n4 - Sinusoid\n5 - Triangle\n0 - exit\n");
+        let signalType = await readLineAsync("1 - Noize\n2 - Pulse\n3 - Sawtooth\n4 - Sinusoid\n5 - Triangle\n0 - exit\n");
         if (signalType == 0) {
             break;
         }
-        const generator = chooseGenerator(Number(signalType));
-        const messageSignalGeneratorName = generator.constructor.name;
-        const amplitude = Number(await readLineAsync("\nAmplitude: "));
-        const frequency = Number(await readLineAsync("Frequency: "));
-        const initialPhase = Number(await readLineAsync("Initial Phase: "));
-        const sampleRate = Number(await readLineAsync("Sample Rate: "));
-        const dutyCycle = Number(await readLineAsync("Duty Cycle: "));
-        const time = Number(await readLineAsync("Time: "));
-        const messageSignal = generator?.generateSignal({ amplitude, frequency, initialPhase, sampleRate, dutyCycle, time });
+        let generator = chooseGenerator(Number(signalType));
+        let messageSignalGeneratorName = generator.constructor.name;
+        let amplitude = Number(await readLineAsync("\nAmplitude: "));
+        let frequency = Number(await readLineAsync("Frequency: "));
+        let initialPhase = Number(await readLineAsync("Initial Phase: "));
+        let sampleRate = Number(await readLineAsync("Sample Rate: "));
+        let dutyCycle = Number(await readLineAsync("Duty Cycle: "));
+        let time = Number(await readLineAsync("Time: "));
+        let messageSignal = generator?.generateSignal({ amplitude, frequency, initialPhase, sampleRate, dutyCycle, time });
         console.log('\n----Message signal complete----\n');
 
         console.log("\n----Choose Generator for Carrier Signal-----");
@@ -35,7 +35,7 @@ const frequencyModulation = async () => {
         dutyCycle = Number(await readLineAsync("Duty Cycle: "));
         time = Number(await readLineAsync("Time: "));
         const modulatedSignal = generator?.generateFrequencyModulatedSignal(messageSignal, { amplitude, frequency, initialPhase, sampleRate, dutyCycle, time });
-        await wavFileGenerator(modulatedSignal, sampleRate, `./services/frequency-modulation/${messageSignalGeneratorName}-by-${modulatedSignalGeneratorName}`);
+        await wavFileGenerator(modulatedSignal, sampleRate, `./services/frequency-modulation/${messageSignalGeneratorName}-by-${modulatedSignalGeneratorName}.wav`);
         console.log('\n----Modulated signal complete----\n');
     }
 }
