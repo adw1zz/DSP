@@ -6,14 +6,18 @@ const menu = require('./services/menu-item');
 const main = async () => {
     while (true) {
         console.clear();
-        const value = await readLineAsync("-------MENU-------\n1 -- Gauss by blur-box\n");
+        const value = await readLineAsync("-------MENU-------\n1 -- Gauss by blur-box\n2 -- Median Filter\n3 -- Sobel Operator\n");
         const obj = menu(Number(value));
-        const image = await readImage('./source/exmpl.png');
+        const image = await readImage('./source/exmpl2.png');
         const start = performance.now();
-        const result = obj.process(image, 2);
+        const result = obj.process(image);
         const end = performance.now();
         console.log(`Process time: ${end - start}ms || ${(end - start) / 1000}sec`)
         writeImage(result, `./source/${obj.constructor.name}.png`)
+        const next = await readLineAsync("Press any key\n");
+        if (next) {
+            continue;
+        }
     }
 
 }

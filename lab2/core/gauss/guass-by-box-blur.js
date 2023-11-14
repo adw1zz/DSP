@@ -1,4 +1,4 @@
-const readLineAsync = require('../read-line-async');
+const readLineAsync = require('../../services/read-line-async');
 
 class GaussByBoxBlur {
 
@@ -7,7 +7,7 @@ class GaussByBoxBlur {
 
     constructor() {
         this.#res = null;
-        this.#kernel = 1;
+        this.#kernel = 3;
     }
 
     #boxBlur() {
@@ -27,6 +27,11 @@ class GaussByBoxBlur {
                             sumG += image[nx][ny][1];
                             sumB += image[nx][ny][2];
                             count++;
+                        } else {
+                            sumR += image[i][j][0];
+                            sumG += image[i][j][1];
+                            sumB += image[i][j][2];
+                            count++;
                         }
                     }
                 }
@@ -36,9 +41,9 @@ class GaussByBoxBlur {
         this.#res = result;
     }
 
-    process(image, kernalSize) {
+    process(image, kernelSize) {
         this.#res = image;
-        this.#kernel = kernalSize;
+        this.#kernel = kernelSize ? kernelSize : this.#kernel;
         for (let i = 0; i < 3; i++) {
             this.#boxBlur();
         }
